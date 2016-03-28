@@ -1,9 +1,9 @@
-REM created by Cyber_sKO
-REM lc 25.03~22.30
-REM wt 30m
+:: created by Cyber_sKO
+:: lc 29.03~0.1
+:: wt 35m
 @echo off
 @color 0a
-@title ----- Wlan-settings -----
+@title ----- Wlan-Settings -----
 
 REM --- Setzten ---
 :int
@@ -68,11 +68,11 @@ echo Bitte geben sie ihr Wlan ein Passwort zum verbinden
 set /p key=
 cls
 echo.
-echo Soell das Wlan gestartet werden sobald der PC hochfaehrt?
+:: echo Soell das Wlan gestartet werden sobald der PC hochfaehrt?
 :: echo ---- funktion hat noch keine Funktion! ----
-echo j/n
-set /p as=
-cls
+:: echo j/n
+:: set /p as=
+:: cls
 :wlanset
 :: --- Wlan set´s mit Bedingungen
 netsh wlan set hostednetwork mode=allow
@@ -83,17 +83,20 @@ netsh wlan set hostednetwork ssid=%ssid%
 :2
 if "%key%"=="" goto check
 netsh wlan set hostednetwork key=%key% keyUsage=%keyusage%
-goto int 
+goto check
 
 :check
-if %as%==j goto mkauto
-if %as%==y goto mkauto
-if %as%==ja goto mkauto
+:: -----
+:: wegen den herausnehmen der funktion
+goto int
+:: -----
+:: if %as%==j goto mkauto
+:: if %as%==y goto mkauto
+:: if %as%==ja goto mkauto
 
 :mkauto 
 if exist wlanstartcyber.bat goto exist
-mkdir "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\wlanstartcyber.bat"
-
+mkdir C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\wlanstartcyber.bat
 echo :: created by Cyber_sKO>>"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\wlanstartcyber.bat"
 echo @ echo off>>"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\wlanstartcyber.bat"
 echo netsh wlan start hostednetwork>>"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\wlanstartcyber.bat"
