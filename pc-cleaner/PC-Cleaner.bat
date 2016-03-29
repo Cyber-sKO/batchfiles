@@ -19,7 +19,7 @@ echo Tool´s
 echo ======
 echo.
 echo [1] Internet Cookies
-echo [2] Temp Internet
+echo [2] Temp Internet Datein
 echo [3] Laufwerksbereinigung
 echo [4] -- noch nicht verfuegbar
 echo [5] exit
@@ -61,7 +61,24 @@ echo Internet Cookies wurden geloescht.
 ping /n 3 localhost>nul
 goto int
 :TI
-goto error
+cls
+echo.
+echo ============================================
+echo   Temp Internet Datein
+echo ============================================
+echo.
+echo Internet Temp wird Geloescht...
+ping /n 3 localhost>nul
+del /f /q "%userprofile%\AppData\Local\Microsoft\Windows\Temporary Internet Files\*.*"
+cls
+echo.
+echo ============================================
+echo   Temp Internet Datein
+echo ============================================
+echo.
+echo Internet Temp wurde Geloescht.
+ping /n 3 localhost>nul
+goto int
 :DC
 cls
 echo.
