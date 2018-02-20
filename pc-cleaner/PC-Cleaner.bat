@@ -1,35 +1,35 @@
 :: Cyber_sKO
-:: lc 29.3~0.10
+:: Version 0.2
+:: Last Change 20.2.18
 @ echo off
 @ color 0a
 
-:int 
-set auswahl=
-goto menu
-
+:Welcome
+cls.
+echo.
+echo.
+echo PC-Cleaner
+echo Beta Version 0.2
+ping /n 3 localhost>nul
 :menu 
 cls
 echo.
 echo.
 echo ============================================
-echo   PC Cleaner
+echo #                PC-Cleaner                #
 echo ============================================
 echo.
-echo Tool´s
+echo Cleaner Tools
 echo ======
 echo.
-echo [1] Internet Cookies
-echo [2] Temp Internet Datein
-echo [3] Laufwerksbereinigung
-echo [4] -- noch nicht verfuegbar
-echo [5] exit
-choice /n /c 12345
-	if errorlevel 255 goto int1
-	if errorlevel 5 goto exit
-	if errorlevel 4 goto error
-	if errorlevel 3 goto DC
-	if errorlevel 2 goto TI
-	if errorlevel 1 goto IC
+echo [1] Browser Cleaner
+echo [2] Laufwerksbereinigung
+echo [3] Beenden
+choice /n /c 123
+	if errorlevel 255 goto menu
+	if errorlevel 3 goto exit
+	if errorlevel 2 goto Laufwerksbereinigung
+	if errorlevel 1 goto Browser
 goto error
 :: Error
 :error
@@ -40,78 +40,45 @@ echo Bitte versuchen sie es erneut!
 ping /n 2 localhost>nul
 goto int
 
-:: tools
-:IC
+:: 					Tools
+:Browser
 cls
 echo.
 echo ============================================
-echo   Internet-Cookies
+echo #             Browser-Cleaner              #
 echo ============================================
 echo.
-echo Cookies werden Geloescht...
-ping /n 3 localhost>nul
+echo Internet Explorer wird bereinigt...
+ping /n 4 localhost>nul
 del /f /q "%userprofile%\Cookies\*.*"
-cls
-echo.
-echo ============================================
-echo   Internet-Cookies
-echo ============================================
-echo.
-echo Internet Cookies wurden geloescht.
-ping /n 3 localhost>nul
-goto int
-:TI
-cls
-echo.
-echo ============================================
-echo   Temp Internet Datein
-echo ============================================
-echo.
-echo Internet Temp wird Geloescht...
-ping /n 3 localhost>nul
 del /f /q "%userprofile%\AppData\Local\Microsoft\Windows\Temporary Internet Files\*.*"
 cls
 echo.
 echo ============================================
-echo   Temp Internet Datein
+echo #             Browser-Cleaner              #
 echo ============================================
 echo.
-echo Internet Temp wurde Geloescht.
-ping /n 3 localhost>nul
-goto int
-:DC
+echo Internet Explorer wurde bereinigt.
+ping /n 5 localhost>nul
+goto menu
+:Laufwerksbereinigung
 cls
 echo.
 echo ============================================
-echo   Laufwerksbereinigung
+echo #            Laufwerksbereinigung          #
 echo ============================================
 echo.
 echo Raume das Laufwerk auf....
-ping /n 3 localhost>nul
+ping /n 4 localhost>nul
 if exist "C:\WINDOWS\temp" del /f /q "C:WINDOWS\temp\*.*"
 if exist "C:\WINDOWS\tmp" del /f /q "C:\WINDOWS\tmp\*.*"
 if exist "C:\tmp" del /f /q "C:\tmp\*.*"
 if exist "C:\temp" del /f /q "C:\temp\*.*"
 if exist "%temp%" del /f /q "%temp%\*.*"
 if exist "%tmp%" del /f /q "%tmp%\*.*"
-if not exist "C:\WINDOWS\Users\*.*" goto 1
-:: if exist "C:\WINDOWS\Users\*.zip" del "C:\WINDOWS\Users\*.zip" /f /q
-:: if exist "C:\WINDOWS\Users\*.exe" del "C:\WINDOWS\Users\*.exe" /f /q
-:: if exist "C:\WINDOWS\Users\*.gif" del "C:\WINDOWS\Users\*.gif" /f /q
-:: if exist "C:\WINDOWS\Users\*.jpg" del "C:\WINDOWS\Users\*.jpg" /f /q
-:: if exist "C:\WINDOWS\Users\*.png" del "C:\WINDOWS\Users\*.png" /f /q
-:: if exist "C:\WINDOWS\Users\*.bmp" del "C:\WINDOWS\Users\*.bmp" /f /q
-:: if exist "C:\WINDOWS\Users\*.avi" del "C:\WINDOWS\Users\*.avi" /f /q
-:: if exist "C:\WINDOWS\Users\*.mpg" del "C:\WINDOWS\Users\*.mpg" /f /q
-:: if exist "C:\WINDOWS\Users\*.mpeg" del "C:\WINDOWS\Users\*.mpeg" /f /q
-:: if exist "C:\WINDOWS\Users\*.ra" del "C:\WINDOWS\Users\*.ra" /f /q
-:: if exist "C:\WINDOWS\Users\*.ram" del "C:\WINDOWS\Users\*.ram"/f /q
-:: if exist "C:\WINDOWS\Users\*.mp3" del "C:\WINDOWS\Users\*.mp3" /f /q
-:: if exist "C:\WINDOWS\Users\*.mov" del "C:\WINDOWS\Users\*.mov" /f /q
-:: if exist "C:\WINDOWS\Users\*.qt" del "C:\WINDOWS\Users\*.qt" /f /q
-:: if exist "C:\WINDOWS\Users\*.asf" del "C:\WINDOWS\Users\*.asf" /f /q
-:1
-if not exist C:\WINDOWS\Users\Users\*.* goto 2 /f /q
+if not exist "C:\WINDOWS\Users\*.*" goto 1st
+:1st
+if not exist C:\WINDOWS\Users\Users\*.* goto 2nd /f /q
 if exist C:\WINDOWS\Users\AppData\Temp\*.zip del C:\WINDOWS\Users\Users\*.zip /f /q
 if exist C:\WINDOWS\Users\AppData\Temp\*.exe del C:\WINDOWS\Users\Users\*.exe /f /q
 if exist C:\WINDOWS\Users\AppData\Temp\*.gif del C:\WINDOWS\Users\Users\*.gif /f /q
@@ -127,14 +94,17 @@ if exist C:\WINDOWS\Users\AppData\Temp\*.mp3 del C:\WINDOWS\Users\Users\*.mp3 /f
 if exist C:\WINDOWS\Users\AppData\Temp\*.asf del C:\WINDOWS\Users\Users\*.asf /f /q
 if exist C:\WINDOWS\Users\AppData\Temp\*.qt del C:\WINDOWS\Users\Users\*.qt /f /q
 if exist C:\WINDOWS\Users\AppData\Temp\*.mov del C:\WINDOWS\Users\Users\*.mov /f /q
-:2
+:2nd
 if exist "C:\WINDOWS\ff*.tmp" del C:\WINDOWS\ff*.tmp /f /q
 if exist C:\WINDOWS\ShellIconCache del /f /q "C:\WINDOWS\ShellI~1\*.*"
 cls
 echo.
 echo ============================================
-echo   Laufwerksbereinigung
+echo #            Laufwerksbereinigung          #
 echo ============================================
-echo Laufwerksbereinigung erfolgrich beendet.
-ping /n 3 localhost>nul
-goto int
+echo.
+echo Laufwerk wurde bereinigt.
+ping /n 5 localhost>nul
+goto menu
+:exit
+exit
